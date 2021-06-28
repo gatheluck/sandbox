@@ -1,0 +1,21 @@
+FROM nvidia/cuda:11.0-devel-ubuntu20.04
+ARG PYTHON_VERSION=3.9
+ARG USER_NAME=default
+# Restrict python log 
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND noninteractive
+
+# Following is needed to install python 3.9
+# RUN apt update && apt install --no-install-recommends -y software-properties-common 
+# RUN add-apt-repository ppa:deadsnakes/ppa
+
+RUN apt update && apt install --no-install-recommends -y \
+    git curl ssh openssh-client \
+    python${PYTHON_VERSION} python3-pip \
+    && pip3 install poetry
+
+# Add user. Without this, following process is executed as admin (This will lead file permission problem.). 
+RUN useradd -ms /bin/sh ${USER_NAME}
+USER ${USER_NAME}
+
+WORKDIR /home/scratch/sandbox

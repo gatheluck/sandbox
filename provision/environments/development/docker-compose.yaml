@@ -1,0 +1,18 @@
+version: "3.8"
+
+services: 
+    sandbox:
+        container_name: sandbox
+        runtime: nvidia
+        environment:
+            - NVIDIA_VISIBLE_DEVICES=all
+        build: 
+            context: ../../../
+            dockerfile: provision/environments/development/Dockerfile-sandbox
+            shm_size: 12G
+        user: 1000:1000
+        tty: true
+        volumes:
+            - ../../../applications/sandbox:/home/scratch/sandbox
+        ports: 
+            - 3000:3000
