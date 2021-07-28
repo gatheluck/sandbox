@@ -1,0 +1,28 @@
+version: "3.8"
+
+services: 
+    sandbox:
+        container_name: sandbox
+        build: 
+            context: ../../../
+            dockerfile: provision/environments/development/sandbox
+            shm_size: 12G
+        user: 1000:1000
+        tty: true
+        volumes:
+            - ../../../applications/sandbox:/home/scratch/sandbox
+        ports: 
+            - 3000:3000
+
+    trainer:
+        container_name: trainer
+        build: 
+            context: ../../../
+            dockerfile: provision/environments/development/trainer
+            shm_size: 12G
+        user: 1000:1000
+        tty: true
+        volumes:
+            - ../../../applications/model_trainer:/home/scratch/model_trainer
+        ports: 
+            - 3000:3000
