@@ -2,31 +2,31 @@ TEST-WORKERS=2
 
 .PHONY: black
 black:
-	poetry run black --check imap tests
+	poetry run black --check trainer tests
 
 .PHONY: black-lint
 black-lint:
-	poetry run black imap tests
+	poetry run black trainer tests
 
 .PHONY: flake8
 flake8:
-	poetry run flake8 imap tests
+	poetry run flake8 trainer tests
 
 .PHONY: isort
 isort:
-	poetry run isort --check-only imap tests
+	poetry run isort --check-only trainer tests
 
 .PHONY: isort-lint
 isort-lint:
-	poetry run isort imap tests
+	poetry run isort trainer tests
 
 .PHONY: mypy
 mypy:
-	poetry run mypy imap
+	poetry run mypy trainer
 
 .PHONY: test
 test:
-	poetry run pytest tests --cov=imap --cov-report term-missing --durations 5
+	poetry run pytest tests --cov=trainer --cov-report term-missing --durations 5
 
 .PHONY: lint
 lint:
