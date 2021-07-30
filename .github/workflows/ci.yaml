@@ -15,9 +15,9 @@ jobs:
     - uses: actions/checkout@v2
     - run: pwd && docker-compose --version && docker --version
 
-    - run: docker-compose build --parallel
+    - run: docker-compose build trainer
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
-    - run: docker-compose up -d
+    - run: docker-compose up -d trainer
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
 
     # pytest-cov export coverage data to a file
