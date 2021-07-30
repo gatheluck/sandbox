@@ -5,7 +5,7 @@ services:
         container_name: sandbox
         build: 
             context: ../../../
-            dockerfile: provision/environments/development/sandbox
+            dockerfile: provision/environments/development/Dockerfile-sandbox
             shm_size: 12G
         user: 1000:1000
         tty: true
@@ -18,7 +18,7 @@ services:
         container_name: trainer
         build: 
             context: ../../../
-            dockerfile: provision/environments/development/trainer
+            dockerfile: provision/environments/development/Dockerfile-trainer
             shm_size: 12G
         user: 1000:1000
         tty: true
