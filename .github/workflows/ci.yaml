@@ -24,19 +24,19 @@ jobs:
     # However, the directory made by actions/checkout does not allow write
     # chmod is needed to resolve above problem
     - run: chmod 777 .
-      working-directory: applications/implicit_mapping
+      working-directory: applications/model_trainer
 
-    - run: docker-compose exec -T model_trainer poetry install --no-interaction
+    - run: docker-compose exec -T trainer poetry install --no-interaction
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
 
-    - run: docker-compose exec -T model_trainer make black
+    - run: docker-compose exec -T trainer make black
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
-    - run: docker-compose exec -T model_trainer make flake8
+    - run: docker-compose exec -T trainer make flake8
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}    
-    - run: docker-compose exec -T model_trainer make isort
+    - run: docker-compose exec -T trainer make isort
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
-    - run: docker-compose exec -T model_trainer make mypy
+    - run: docker-compose exec -T trainer make mypy
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
 
-    - run: docker-compose exec -T model_trainer make test
+    - run: docker-compose exec -T trainer make test
       working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
