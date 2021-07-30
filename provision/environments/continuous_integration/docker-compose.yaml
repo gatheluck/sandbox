@@ -25,4 +25,4 @@ services:
         volumes:
             - ../../../applications/model_trainer:/home/scratch/model_trainer
         ports: 
-            - 3000:3000
+            - 3001:3001
