@@ -1,0 +1,42 @@
+name: CI
+
+on: [pull_request]
+
+env:
+  DOCKER_COMPOSE_DIRECTORY: provision/environments/continuous_integration
+  COMPOSE_DOCKER_CLI_BUILD: 1
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@v2
+    - run: pwd && docker-compose --version && docker --version
+
+    - run: docker-compose build --parallel trainer
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+    - run: docker-compose up -d trainer
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+
+    # pytest-cov export coverage data to a file
+    # However, the directory made by actions/checkout does not allow write
+    # chmod is needed to resolve above problem
+    - run: chmod 777 .
+      working-directory: applications/model_trainer
+
+    - run: docker-compose exec -T trainer poetry install --no-interaction
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+
+    - run: docker-compose exec -T trainer make black
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+    - run: docker-compose exec -T trainer make flake8
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}    
+    - run: docker-compose exec -T trainer make isort
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+    - run: docker-compose exec -T trainer make mypy
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}
+
+    - run: docker-compose exec -T trainer make test
+      working-directory: ${{ env.DOCKER_COMPOSE_DIRECTORY }}

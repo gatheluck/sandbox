@@ -3,9 +3,6 @@ version: "3.8"
 services: 
     sandbox:
         container_name: sandbox
-        runtime: nvidia
-        environment:
-            - NVIDIA_VISIBLE_DEVICES=all
         build: 
             context: ../../../
             dockerfile: provision/environments/development/Dockerfile-sandbox
@@ -19,9 +16,6 @@ services:
 
     trainer:
         container_name: trainer
-        runtime: nvidia
-        environment:
-            - NVIDIA_VISIBLE_DEVICES=all
         build: 
             context: ../../../
             dockerfile: provision/environments/development/Dockerfile-trainer

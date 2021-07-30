@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.0-devel-ubuntu20.04
 ARG PYTHON_VERSION=3.9
 ARG USER_NAME=default
-ARG APPLICATION_DIRECTORY=/home/scratch/sandbox
+ARG APPLICATION_DIRECTORY=/home/scratch/model_trainer
 # Restrict python log 
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND noninteractive
