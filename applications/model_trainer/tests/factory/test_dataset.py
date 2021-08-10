@@ -21,6 +21,6 @@ class TestCIFAR10:
             assert type(x) == torch.Tensor
             assert x.size() == torch.Size([batch_size, 3, 32, 32])
             dirpath = pathlib.Path("outputs/pytest")
-            dirpath.mkdir(parents=True)
+            dirpath.mkdir(parents=True, exist_ok=True)
             torchvision.utils.save_image(x, dirpath / "cifar10.png")
             break
