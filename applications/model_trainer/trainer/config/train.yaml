@@ -1,0 +1,10 @@
+defaults:
+  - arch: resnet34
+  - env: local
+  - datamodule: cifar10
+  - optimizer: sgd
+  - scheduler: plateau
+
+hydra:
+  run:
+    dir: ${env.savedir}/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}

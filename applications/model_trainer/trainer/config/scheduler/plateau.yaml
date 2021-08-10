@@ -1,0 +1,4 @@
+# @package _group_
+mode: min
+factor: 0.25
+patience: 5
