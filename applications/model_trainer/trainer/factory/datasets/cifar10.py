@@ -20,11 +20,11 @@ class Cifar10Stats(DatasetStats):
 
 class CIAFR10(torchvision.datasets.CIFAR10):
     def __init__(
-            self,
-            root: str,
-            train: bool = True,
-            transform: Optional[Callable] = None,
-            download: bool = False,
+        self,
+        root: str,
+        train: bool = True,
+        transform: Optional[Callable] = None,
+        download: bool = False,
     ):
         super().__init__(
             root=root,
@@ -71,7 +71,7 @@ class Cifar10DataModule(BaseDataModule):
         torchvision.datasets.CIFAR10(root=self.root, train=False, download=True)
 
     def setup(self, stage=None, *args, **kwargs) -> None:
-        """Assign test dataset """
+        """Assign test dataset"""
         self.train_dataset: Dataset = CIAFR10(
             root=self.root,
             train=True,
@@ -87,9 +87,9 @@ class Cifar10DataModule(BaseDataModule):
         )
 
     def _get_transform(
-            self,
-            train: bool,
-            normalize: bool = True,
+        self,
+        train: bool,
+        normalize: bool = True,
     ) -> albu.Compose:
         transform = list()
 
@@ -101,15 +101,21 @@ class Cifar10DataModule(BaseDataModule):
             transform.extend(
                 [
                     albu.augmentations.transforms.HorizontalFlip(p=0.5),
-                    albu.augmentations.transforms.PadIfNeeded(min_height=input_size + 4, min_width=input_size + 4),
-                    albu.augmentations.crops.transforms.RandomCrop(height=input_size, width=input_size, p=1.0),
+                    albu.augmentations.transforms.PadIfNeeded(
+                        min_height=input_size + 4, min_width=input_size + 4
+                    ),
+                    albu.augmentations.crops.transforms.RandomCrop(
+                        height=input_size, width=input_size, p=1.0
+                    ),
                 ]
             )
         else:
             pass
 
         if normalize:
-            transform.extend([albu.augmentations.transforms.Normalize(mean=mean, std=std)])
+            transform.extend(
+                [albu.augmentations.transforms.Normalize(mean=mean, std=std)]
+            )
 
         transform.extend([ToTensorV2()])
         return albu.Compose(transform)

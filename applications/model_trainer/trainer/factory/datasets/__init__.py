@@ -2,8 +2,8 @@ import pathlib
 from dataclasses import dataclass
 from typing import Final, Tuple
 
-import torch
 import pytorch_lightning as pl
+import torch
 from omegaconf import MISSING
 from torch.utils.data import DataLoader, Dataset
 
