@@ -1,3 +1,4 @@
+import dataclasses
 from typing import Dict, Final, Tuple, Union
 
 import pytorch_lightning as pl
@@ -105,11 +106,12 @@ class SupervisedClassifier(pl.LightningModule):
 
     def configure_optimizers(
         self,
-    ) -> Dict[str, Union[torch.optim.Optimizer, _LRScheduler]]:
+    ) -> Dict[str, Union[torch.optim.Optimizer, Dict[str, Union[str, _LRScheduler]]]]:
         """setup optimzier and scheduler."""
         optimizer = instantiate(self.optimizer_cfg, params=self.encoder.parameters())
-        scheduler = {"scheduler": instantiate(self.scheduler_cfg, optimizer)}
+        scheduler = {
+            "scheduler": instantiate(self.scheduler_cfg, optimizer),
+            "monitor": "train_err1",
+        }
 
-        if "mode" in self.scheduler_cfg:
-            scheduler["monitor"] = "train_err1"
         return dict(optimizer=optimizer, lr_scheduler=scheduler)

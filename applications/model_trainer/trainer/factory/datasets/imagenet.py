@@ -5,7 +5,6 @@ from typing import Any, Callable, Final, Optional, Tuple
 import albumentations as albu
 import torchvision
 from albumentations.pytorch import ToTensorV2
-from torch.utils.data import Dataset
 
 from trainer.factory.datasets import BaseDataModule, DatasetStats
 

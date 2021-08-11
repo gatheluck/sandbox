@@ -21,7 +21,7 @@ class Cifar10Stats(DatasetStats):
 class CIAFR10(torchvision.datasets.CIFAR10):
     def __init__(
         self,
-        root: str,
+        root: pathlib.Path,
         train: bool = True,
         transform: Optional[Callable] = None,
         download: bool = False,

@@ -5,7 +5,7 @@ from omegaconf import MISSING
 
 @dataclass
 class EnvConfig:
-    device: str = MISSING
+    gpus: int = MISSING
     num_nodes: int = MISSING
     num_workers: int = MISSING
     savedir: str = MISSING
