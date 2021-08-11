@@ -1,6 +1,6 @@
 defaults:
   - arch: resnet34
-  - env: local
+  - env: default
   - datamodule: cifar10
   - optimizer: sgd
   - scheduler: plateau

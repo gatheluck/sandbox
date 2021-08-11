@@ -10,7 +10,7 @@ from .datamodule import (  # noqa # NOTE: If you want to add your datamodule, pl
     DataModuleConfig,
     Imagenet1kDataModuleConfig,
 )
-from .env import DefaultEnvConfig, EnvConfig  # noqa
+from .env import DefaultEnvConfig, EnvConfig, NogpuEnvConfig  # noqa
 from .optimizer import AdamConfig, OptimizerConfig, SgdConfig  # noqa
 from .scheduler import (  # noqa
     CosinConfig,
