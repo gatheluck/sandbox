@@ -1,4 +1,3 @@
-import dataclasses
 from typing import Dict, Final, Tuple, Union
 
 import pytorch_lightning as pl
