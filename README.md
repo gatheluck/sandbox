@@ -1,7 +1,6 @@
 # Sandbox
 
 [![CI](https://github.com/gatheluck/sandbox/workflows/CI/badge.svg)](https://github.com/gatheluck/sandbox/actions?query=workflow%3ACI)
-[![codecov](https://codecov.io/gh/gatheluck/sandbox/branch/master/graph/badge.svg?token=17KIZNS046)](https://codecov.io/gh/gatheluck/sandbox)
 [![MIT License](https://img.shields.io/github/license/gatheluck/sandbox?color=green)](LICENSE)
 
 ## Directory configuration
