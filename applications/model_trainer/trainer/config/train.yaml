@@ -5,6 +5,9 @@ defaults:
   - optimizer: sgd
   - scheduler: plateau
 
+epochs: 90
+batch_size: 128
+
 hydra:
   run:
     dir: ${env.savedir}/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}
