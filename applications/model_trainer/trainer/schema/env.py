@@ -17,3 +17,11 @@ class DefaultEnvConfig(EnvConfig):
     num_nodes: int = 1
     num_workers: int = 8
     savedir: str = "outputs"
+
+
+@dataclass
+class NogpuEnvConfig(EnvConfig):
+    gpus: int = 0
+    num_nodes: int = 0
+    num_workers: int = 8
+    savedir: str = "outputs"

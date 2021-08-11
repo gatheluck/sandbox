@@ -65,7 +65,8 @@ cs.store(group="arch", name="wideresnet40", node=schema.Wideresnet40Config)
 cs.store(group="datamodule", name="cifar10", node=schema.Cifar10DataModuleConfig)
 cs.store(group="datamodule", name="imagenet1k", node=schema.Imagenet1kDataModuleConfig)
 # env
-cs.store(group="env", name="local", node=schema.DefaultEnvConfig)
+cs.store(group="env", name="default", node=schema.DefaultEnvConfig)
+cs.store(group="env", name="nogpu", node=schema.NogpuEnvConfig)
 # optimizer
 cs.store(group="optimizer", name="sgd", node=schema.SgdConfig)
 cs.store(group="optimizer", name="adam", node=schema.AdamConfig)
